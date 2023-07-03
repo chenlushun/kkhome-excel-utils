@@ -8,6 +8,9 @@ public class ExecActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command) {
+            case "vitastudio发货单处理":
+                new VitastudioFHExcelHandler().doHandler();
+                break;
             case "Excel合并(KKHOME)":
                 new MergeAndDistinctExcelHandler().doHandler();
                 break;

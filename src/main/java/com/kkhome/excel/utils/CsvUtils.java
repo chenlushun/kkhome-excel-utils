@@ -26,24 +26,25 @@ public class CsvUtils {
         ArrayList<String> allString = new ArrayList<>();
         try {
             // 读取到的内容给line变量
-//            StringBuilder temp = new StringBuilder();
+            StringBuilder temp = new StringBuilder();
             while ((line = br.readLine()) != null) {
-                allString.add(line);
-//                if (line.endsWith("\"")) {
-//                    if (temp.length() == 0) {
-//                        System.out.println(line);
-//                        allString.add(line);
-//                    } else {
-//                        //temp.append(line);
-//                        temp.append("\"");
-//                        System.out.println(temp.toString());
-//                        allString.add(temp.toString());
-//                    }
-//                    temp = new StringBuilder();
-//                } else {
-//                    // 处理内部换行
-//                    temp.append(line);
-//                }
+//                allString.add(line);
+                if (line.endsWith("\"")) {
+                    temp.append(line);
+                    if (temp.length() == 0) {
+                        System.out.println(line);
+                        allString.add(line);
+                    } else {
+                        //temp.append(line);
+                        temp.append("\"");
+                        System.out.println(temp.toString());
+                        allString.add(temp.toString());
+                    }
+                    temp = new StringBuilder();
+                } else {
+                    // 处理内部换行
+                    temp.append(line);
+                }
             }
             System.out.println("csv表格中所有行数：" + allString.size());
         } catch (IOException e) {
