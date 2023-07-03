@@ -27,6 +27,8 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             String str = stringList.get(i).replace("\"", "");
             str = str.replace("カラー:", "/");
             str = str.replace("サイズ:", "/");
+            str = str.replace("配送日時指定:", "");
+            str = str.replace("[]", "");
             String[] rows = str.split(",");
             List<String> rowList = new ArrayList<>();
 
@@ -87,6 +89,16 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             rowList.add("");
             // AB 16
             rowList.add("【" + rows[12] + "】" + rows[13] + "/" + rows[14] + "個");
+            // AC 16
+            rowList.add("");
+            // AD 16
+            rowList.add("");
+            // AE 16
+            rowList.add("");
+            // AF 16
+            rowList.add("");
+            // AG 16
+            rowList.add(rows[15] + rows[16] + rows[17]);
             result.add(rowList);
         }
         inserSheetData(result, "D:\\template\\vitastudio20230703.xls");
@@ -176,6 +188,7 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
 
     public static String fileCopy(String path) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+//        String newF = "D:\\vitastudio" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + ".xls";
         String newF = "C:\\Users\\Admin\\Desktop\\vita日本仓发货\\vitastudio" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + ".xls";
         try (InputStream is = new FileInputStream(path);
              OutputStream os = new FileOutputStream(newF, true)) {  //注意OS的第二参数，是否追加。
