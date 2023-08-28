@@ -33,7 +33,7 @@ public class Application {
         // jf.add(FromJTextField.getJTextField());
 
         //给窗体添加一个按钮对象
-        jf.add(getButton("佐川地址处理"));
+//        jf.add(getButton("佐川地址处理"));
 //        jf.add(getButton("Excel合并(KKHOME)"));
 //        jf.add(getButton("Excel合并(星川)"));
 //        jf.add(getButton("多个excel合并成一个"));
