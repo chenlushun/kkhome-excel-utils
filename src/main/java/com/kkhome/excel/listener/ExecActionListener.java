@@ -23,7 +23,7 @@ public class ExecActionListener implements ActionListener {
             case "上海发货":
                 new ShangHaiDeliveryAddressHandler().doHandler();
                 break;
-            case "字符转换":
+            case "物流单号转换":
                 new ZIFUTranslate().doHandler();
                 break;
         }
