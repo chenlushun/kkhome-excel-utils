@@ -39,6 +39,7 @@ public class Application {
 //        jf.add(getButton("多个excel合并成一个"));
 //        jf.add(getButton("文件编码转换"));
         jf.add(getButton("字符转换"));
+        jf.add(getButton("上海发货"));
         jf.add(getButton("vitastudio发货单处理"));
         //设置可见，放在代码最后一句
         jf.setVisible(true);

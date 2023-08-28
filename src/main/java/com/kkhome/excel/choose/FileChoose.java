@@ -31,7 +31,7 @@ public class FileChoose {
 //        }
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        //fileChooser.setCurrentDirectory(new File("/Users/kinoko/Desktop/kkhome/123"));
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\Administrator\\Desktop\\资料"));
         // 保存上一次文件选择的路径
         //String path = PathUtils.read();
         if (StringUtils.isNotEmpty(path)) {
