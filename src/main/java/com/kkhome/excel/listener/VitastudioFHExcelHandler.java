@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kkhome.excel.constant.Constant.DEFAULT_OPEN_URL;
+
 /**
  * Vitastudio发货单处理
  */
@@ -110,6 +112,7 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setMultiSelectionEnabled(true);
+        fileChooser.setCurrentDirectory(new File(DEFAULT_OPEN_URL));
         int returnVal = fileChooser.showOpenDialog(fileChooser);
         String from = null;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
