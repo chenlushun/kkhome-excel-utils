@@ -214,7 +214,7 @@ public class ShangHaiDeliveryAddressHandler extends AbstractExcelHandler impleme
                 Date date = new Date();
                 to = from.substring(0, to.lastIndexOf("RB")) + String.format(name, date, date) + ".xls";
                 readCsvToExcel(from, to);
-                JOptionPane.showMessageDialog(null, "成功！！！,文件已经放置在：" + to, "转换成功", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "成功！！！,文件已经放置在：" + from, "转换成功", JOptionPane.PLAIN_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "输入文件不存在，地址：" + from, "输入有错", JOptionPane.PLAIN_MESSAGE);
             }
