@@ -6,6 +6,8 @@ import org.apache.commons.lang.StringUtils;
 import javax.swing.*;
 import java.io.File;
 
+import static com.kkhome.excel.constant.Constant.DEFAULT_OPEN_URL;
+
 @Data
 public class FileChoose {
 
@@ -31,7 +33,7 @@ public class FileChoose {
 //        }
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setCurrentDirectory(new File("E:\\谷歌网页下载"));
+        fileChooser.setCurrentDirectory(new File(DEFAULT_OPEN_URL));
         // 保存上一次文件选择的路径
         //String path = PathUtils.read();
         if (StringUtils.isNotEmpty(path)) {
