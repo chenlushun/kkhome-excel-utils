@@ -23,6 +23,12 @@ import static com.kkhome.excel.constant.Constant.SHANG_HAI_DELIVERY_EXCEL_ADDRES
 public class ShangHaiDeliveryAddressHandler extends AbstractExcelHandler implements ExcelHandler {
     private final static String name = "%tm%td-陈录顺";
 
+    private boolean checkBoxSelected;
+
+    public ShangHaiDeliveryAddressHandler(boolean checkBoxSelected) {
+        this.checkBoxSelected = checkBoxSelected;
+    }
+
     @Override
     public void handlerExcel(List<List<String>> result, List<String> stringList) {
         for (int i = 1; i < stringList.size(); i++) {
@@ -54,6 +60,51 @@ public class ShangHaiDeliveryAddressHandler extends AbstractExcelHandler impleme
             rowList.add("" + rows[19] + "-" + rows[20] + "-" + rows[21]);
             // I 9 收件人邮编
             rowList.add(rows[14] + "-" + rows[15]);
+            // J 10 英文品名1
+            rowList.add("");
+            // K 11 配货信息1（SKU）
+            rowList.add("");
+            // L 12 申报价值1（美元）
+            rowList.add("");
+            // M 13 英文品名2
+            rowList.add("");
+            // N 14 配货信息2（SKU）
+            rowList.add("");
+            // O 15 申报价值2
+            rowList.add("");
+            // P 16 英文品名3
+            rowList.add("");
+            // Q 17 海关报关品名3
+            rowList.add("");
+            // R 16 申报价值3
+            rowList.add("");
+            // S 16 申报品数量3
+            rowList.add("");
+            result.add(rowList);
+        }
+        if (checkBoxSelected) {
+            List<String> rowList = new ArrayList<>();
+
+            // A 1  客户单号
+            rowList.add("");
+            // B 2  转单号
+            rowList.add("");
+            // C 3  重量
+            rowList.add("");
+            rowList.add("");
+            rowList.add("");
+            // D 4  收件人姓名
+            rowList.add("vita(品和株式会社)");
+            // E 5  联系地址
+            rowList.add("福島県伊達市梁川町粟野字前93-1");
+            // F 6 城市
+            rowList.add("");
+            // G 7 州,省
+            rowList.add("");
+            // H 8 收件人电话
+            rowList.add("024-572-3218");
+            // I 9 收件人邮编
+            rowList.add("960-0711");
             // J 10 英文品名1
             rowList.add("");
             // K 11 配货信息1（SKU）
@@ -225,8 +276,7 @@ public class ShangHaiDeliveryAddressHandler extends AbstractExcelHandler impleme
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd");
 //        String newF = "D:\\vitastudio" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + ".xls";
         String newF = SHANG_HAI_DELIVERY_EXCEL_ADDRESS_NEW + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + "陈录顺.xls";
-        try (InputStream is = new FileInputStream(path);
-             OutputStream os = new FileOutputStream(newF, true)) {  //注意OS的第二参数，是否追加。
+        try (InputStream is = new FileInputStream(path); OutputStream os = new FileOutputStream(newF, true)) {  //注意OS的第二参数，是否追加。
             byte[] buffer = new byte[1024 * 1024];
             int len = 0;
             while ((len = is.read(buffer)) != -1) {
