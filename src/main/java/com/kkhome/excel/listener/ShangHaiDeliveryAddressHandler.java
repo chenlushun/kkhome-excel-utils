@@ -15,6 +15,12 @@ import java.util.List;
 public class ShangHaiDeliveryAddressHandler extends AbstractExcelHandler implements ExcelHandler {
     private final static String name = "%tm%td-陈录顺";
 
+    private boolean isAddHaiCang;
+
+    public ShangHaiDeliveryAddressHandler(boolean isAddHaiCang) {
+        this.isAddHaiCang = isAddHaiCang;
+    }
+
     @Override
     public void handlerExcel(List<List<String>> result, List<String> stringList) {
 
@@ -27,7 +33,13 @@ public class ShangHaiDeliveryAddressHandler extends AbstractExcelHandler impleme
         handlerExcel(result, stringList);
         EasyExcel.write(to, ShangHaiDelivery.class).sheet("Sheet1").doWrite(() -> {
             // 分页查询数据
-            return getShangHaiDeliveries(stringList);
+            List<ShangHaiDelivery> res = getShangHaiDeliveries(stringList);
+            if (isAddHaiCang) {
+                ShangHaiDelivery delivery = new ShangHaiDelivery();
+                delivery.setPost("");
+                res.add(delivery);
+            }
+            return res;
         });
     }
 

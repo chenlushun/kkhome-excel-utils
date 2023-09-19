@@ -20,9 +20,6 @@ public class ExecActionListener implements ActionListener {
             case "佐川地址处理":
                 new ZuoChuanAddressHandler().doHandler();
                 break;
-            case "上海发货":
-                new ShangHaiDeliveryAddressHandler().doHandler();
-                break;
             case "物流单号转换":
                 new ZIFUTranslate().doHandler();
                 break;
