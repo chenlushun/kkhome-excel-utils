@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @Component
 public class CenterJPanel {
@@ -16,7 +14,6 @@ public class CenterJPanel {
         // 参考地址： https://blog.csdn.net/qq_36901092/article/details/130075998
         JPanel entcer = new JPanel();
         entcer.setLayout(new GridLayout(8, 2));
-        entcer.add(ButtonUtils.getEmpty());
         entcer.add(getButton("物流单号转换"));
         entcer.add(ButtonUtils.getEmpty());
 
@@ -28,14 +25,8 @@ public class CenterJPanel {
         JCheckBox checkBox1 = new JCheckBox("勾选添加海外仓地址");
         entcer.add(checkBox1);
         javax.swing.JButton shfh = new javax.swing.JButton("上海发货");
-        shfh.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                new ShangHaiDeliveryAddressHandler(checkBox1.isSelected()).doHandler();
-            }
-        });
+        shfh.addActionListener(actionEvent -> new ShangHaiDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
         entcer.add(shfh);
-
         entcer.add(ButtonUtils.getEmpty());
         entcer.add(getButton("vitastudio发货单处理"));
         return entcer;

@@ -19,12 +19,14 @@ public class MainJframe extends JFrame implements ApplicationRunner {
 
     @Autowired
     private CenterJPanel centerJPanel;
+    @Autowired
+    private VersionJPanel versionJPanel;
 
     public void showUI() {
         //窗体名称
         this.setTitle("可可科技excel助理工具");
         //窗体大小（具体值跟电脑显示器的像素有关，可调整到合适大小）
-        this.setSize(300, 300);
+        this.setSize(600, 600);
 //        this.setBounds(100, 100, 700, 540);
         //设置退出进程的方法
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +44,8 @@ public class MainJframe extends JFrame implements ApplicationRunner {
 //        jf.add(FromJTextField.getJTextField());
 
 
-        this.add(centerJPanel.getJPanel(), BorderLayout.WEST);
+        this.add(versionJPanel.getJPanel(), BorderLayout.SOUTH);
+        this.add(centerJPanel.getJPanel(), BorderLayout.CENTER);
 //        this.add(jPanelSouth, BorderLayout.SOUTH);
         //设置可见，放在代码最后一句
         this.setVisible(true);

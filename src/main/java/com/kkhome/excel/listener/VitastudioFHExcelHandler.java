@@ -14,6 +14,8 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.kkhome.excel.constant.Constant.DEFAULT_OPEN_URL;
 
@@ -25,13 +27,56 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
 
     @Override
     public void handlerExcel(List<List<String>> result, List<String> stringList) {
+
+        List<Data> list = new ArrayList<>();
         for (int i = 1; i < stringList.size(); i++) {
             String str = stringList.get(i).replace("\"", "");
-            str = str.replace("カラー:", "/");
-            str = str.replace("サイズ:", "/");
-            str = str.replace("配送日時指定:", "");
-            str = str.replace("[]", "");
             String[] rows = str.split(",");
+            Data data = new Data();
+            // B 2
+            data.setB("7");
+            // E 5
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            data.setE(LocalDateTime.now(ZoneOffset.of("+8")).format(df));
+            // F 6
+            data.setF(rows[0]);
+            // G 7
+            data.setG(rows[1]);
+            // I 9
+            data.setI(rows[2] + "-" + rows[3] + "-" + rows[4]);
+            // K 11
+            data.setK(rows[5] + "-" + rows[6]);
+            // L 12
+            data.setL(rows[7] + rows[8] + rows[9]);
+            // P 16
+            data.setP(rows[10] + rows[11]);
+            // T 16
+            data.setT("024-572-3218");
+
+            // V 16
+            data.setV("1400002");
+            // W 16
+            data.setW("東京都品川区東品川３－５－１５－２０６号");
+            // Y 16
+            data.setY("vitastudio");
+            // AB 16
+            // N列如果不存在，则取Q列的数据，同时将カラー替换掉
+            String sku = rows[13];
+            if (StringUtils.isEmpty(sku)) {
+                sku = rows[16];
+            }
+            if (StringUtils.isNotEmpty(sku)) {
+                sku = sku.replace("カラー:", "/").replace("サイズ:", "/");
+            }
+            data.setAB("【" + rows[12] + "】" + sku + "/" + rows[14] + "個");
+            // AG 16
+            data.setAG(rows[17]);
+            list.add(data);
+        }
+
+        Map<String, List<Data>> map = list.stream().collect(Collectors.groupingBy(Data::getAG));
+        map.forEach((k, v) -> {
+            Data data = v.get(0);
             List<String> rowList = new ArrayList<>();
 
             // A 1
@@ -46,19 +91,19 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             rowList.add(LocalDateTime.now(ZoneOffset.of("+8")).format(df));
             // F 6
-            rowList.add(rows[0]);
+            rowList.add(data.getF());
             // G 7
-            rowList.add(rows[1]);
+            rowList.add(data.getG());
             // H 8
             rowList.add("");
             // I 9
-            rowList.add(rows[2] + "-" + rows[3] + "-" + rows[4]);
+            rowList.add(data.getI());
             // J 10
             rowList.add("");
             // K 11
-            rowList.add(rows[5] + "-" + rows[6]);
+            rowList.add(data.getK());
             // L 12
-            rowList.add(rows[7] + rows[8] + rows[9]);
+            rowList.add(data.getL());
             // M 13
             rowList.add("");
             // N 14
@@ -66,7 +111,7 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             // O 15
             rowList.add("");
             // P 16
-            rowList.add(rows[10] + rows[11]);
+            rowList.add(data.getP());
             // Q 17
             rowList.add("");
             // R 16
@@ -74,11 +119,11 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             // S 16
             rowList.add("");
             // T 16
-            rowList.add("024-572-3218");
+            rowList.add(data.getT());
             // U 16
             rowList.add("");
             // V 16
-            rowList.add("1400002");
+            rowList.add(data.getV());
             // W 16
             rowList.add("東京都品川区東品川３－５－１５－２０６号");
             // X 16
@@ -90,7 +135,16 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             // AA 16
             rowList.add("");
             // AB 16
-            rowList.add("【" + rows[12] + "】" + rows[13] + "/" + rows[14] + "個");
+
+            StringBuilder ab = new StringBuilder();
+            for (Data data1 : v) {
+                if (ab.length() != 0) {
+                    ab.append("+");
+                }
+                ab.append(data1.getAB());
+            }
+            rowList.add(ab.toString());
+
             // AC 16
             rowList.add("");
             // AD 16
@@ -100,9 +154,10 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             // AF 16
             rowList.add("");
             // AG 16
-            rowList.add(rows[15] + rows[16] + rows[17]);
+            rowList.add(data.getAG());
             result.add(rowList);
-        }
+        });
+
         inserSheetData(result, "D:\\template\\vitastudio20230703.xls");
 
     }
@@ -205,6 +260,24 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
             e.printStackTrace();
         }
         return newF;
+    }
+
+    @lombok.Data
+    public static class Data {
+        private String B;
+        private String E;
+        private String F;
+        private String G;
+        private String I;
+        private String K;
+        private String L;
+        private String P;
+        private String T;
+        private String V;
+        private String W;
+        private String Y;
+        private String AB;
+        private String AG;
     }
 
 }
