@@ -15,7 +15,6 @@ public class CenterJPanel {
         JPanel entcer = new JPanel();
         entcer.setLayout(new GridLayout(8, 2));
         entcer.add(getButton("物流单号转换"));
-        entcer.add(ButtonUtils.getEmpty());
 
 //        Vector<String> items = new Vector<>();
 //        items.add("默认不加海外仓地址");

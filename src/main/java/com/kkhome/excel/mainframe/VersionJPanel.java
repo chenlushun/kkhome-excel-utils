@@ -10,7 +10,7 @@ public class VersionJPanel {
     public JPanel getJPanel() {
         // 参考地址： https://blog.csdn.net/qq_36901092/article/details/130075998
         JPanel title = new JPanel();
-        title.setLayout(new GridLayout(2, 5));
+        title.setLayout(new GridLayout(3, 5));
         JLabel de = new JLabel("功能说明：\t");
         title.add(de);
         JLabel des = new JLabel("模板文件存储在：D:/template\t");
