@@ -1,5 +1,7 @@
-package com.kkhome.excel.mainframe;
+package com.kkhome.excel.frame;
 
+import com.kkhome.excel.panel.*;
+import com.kkhome.excel.panel.center.FhCenterJPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,7 +20,13 @@ public class MainJframe extends JFrame implements ApplicationRunner {
     private JButton loginButton, resetButton;
 
     @Autowired
-    private CenterJPanel centerJPanel;
+    private FhCenterJPanel fhCenterJPanel;
+    @Autowired
+    private LeftJPanel leftJPanel;
+    @Autowired
+    private HeaderJPanel headerJPanel;
+    @Autowired
+    private FooterJPanel footerJPanel;
     @Autowired
     private VersionJPanel versionJPanel;
 
@@ -32,6 +40,7 @@ public class MainJframe extends JFrame implements ApplicationRunner {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //设置居中显示用3
         this.setLocationRelativeTo(null);
+//        this.setLayout(null);
 
         //流式布局管理器
 //        java.awt.FlowLayout flow = new java.awt.FlowLayout();
@@ -43,9 +52,9 @@ public class MainJframe extends JFrame implements ApplicationRunner {
         //文件地址
 //        jf.add(FromJTextField.getJTextField());
 
-
-        this.add(versionJPanel.getJPanel(), BorderLayout.SOUTH);
-        this.add(centerJPanel.getJPanel(), BorderLayout.CENTER);
+        this.add(leftJPanel,BorderLayout.WEST);
+        this.add(versionJPanel, BorderLayout.SOUTH);
+        this.add(fhCenterJPanel, BorderLayout.CENTER);
 //        this.add(jPanelSouth, BorderLayout.SOUTH);
         //设置可见，放在代码最后一句
         this.setVisible(true);
