@@ -65,7 +65,7 @@ public class ItemUpLoad {
             // 一列
             List<List<String>> l1 = new ArrayList<>();
 
-            File f = new File("D:\\发货\\美图批处理照片");
+            File f = new File("C:\\Users\\Admin\\Desktop\\美图批处理照片");
 
             File[] files = f.listFiles();
             Map<String, List<String>> huoHao = new HashMap<>();
@@ -122,7 +122,7 @@ public class ItemUpLoad {
                 l1.add(stringList);
             });
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
-            writeExcel2(l1, "D:\\发货\\上新-" + simpleDateFormat.format(new Date()) + ".xlsx");
+            writeExcel2(l1, "C:\\Users\\Admin\\Desktop\\上新-" + simpleDateFormat.format(new Date()) + ".xlsx");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "文件被占用", JOptionPane.PLAIN_MESSAGE);
         }
