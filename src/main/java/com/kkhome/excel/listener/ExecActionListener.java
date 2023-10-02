@@ -1,5 +1,7 @@
 package com.kkhome.excel.listener;
 
+import com.kkhome.excel.listener.sx.ItemUpLoad;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +24,9 @@ public class ExecActionListener implements ActionListener {
                 break;
             case "物流单号转换":
                 new ZIFUTranslate().doHandler();
+                break;
+            case "上新表格生成":
+                ItemUpLoad.itemUpload();
                 break;
         }
     }
