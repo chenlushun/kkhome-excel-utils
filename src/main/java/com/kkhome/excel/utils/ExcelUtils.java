@@ -122,16 +122,56 @@ public class ExcelUtils {
 
     }
 
-//    public static void main(String[] args) {
-    // csvToXLSX("/Users/kinoko/Desktop/kkhome/test");
+    /**
+     * 把内容写入Excel
+     *
+     * @param list 传入要写的内容，此处以一个List内容为例，先把要写的内容放到一个list中
+     * @param path 把输出流怼到要写入的Excel上，准备往里面写数据
+     */
+    public static void writeExcel2(List<List<String>> list, String path) {
+        //创建工作簿
+        XSSFWorkbook xssfWorkbook = new XSSFWorkbook();
 
-//        List<List<String>> l1 = new ArrayList<>();
-//
-//        List<String> stringList = new ArrayList<>();
-//
-//        stringList.add("123");
-//        stringList.add("456");
-//        l1.add(stringList);
-//        writeExcel(l1, "/Users/kinoko/Desktop/kkhome/tes.xlsx");
-//    }
+        //创建工作表
+        XSSFSheet xssfSheet;
+        xssfSheet = xssfWorkbook.createSheet();
+
+        //创建行
+        XSSFRow xssfRow;
+
+        //创建列，即单元格Cell
+        XSSFCell xssfCell;
+
+        //把List里面的数据写到excel中
+        for (int i = 0; i < list.size(); i++) {
+            //从第一行开始写入
+            xssfRow = xssfSheet.createRow(i);
+            //创建每个单元格Cell，即列的数据
+            List<String> sub_list = list.get(i);
+            for (int j = 0; j < sub_list.size(); j++) {
+                //创建单元格
+                xssfCell = xssfRow.createCell(j);
+
+                //设置单元格内容
+                String context = sub_list.get(j);
+                if (StringUtils.isNotEmpty(context)) {
+                    // xssfCell.setCellValue(context.replace("\"", ""));
+                    xssfCell.setCellValue(context);
+                } else {
+                    xssfCell.setCellValue(context);
+                }
+            }
+        }
+
+        //用输出流写到excel
+        try {
+            OutputStream outputStream = new FileOutputStream(path);
+            xssfWorkbook.write(outputStream);
+            outputStream.flush();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
