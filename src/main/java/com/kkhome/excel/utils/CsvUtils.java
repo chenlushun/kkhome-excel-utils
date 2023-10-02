@@ -1,8 +1,11 @@
 package com.kkhome.excel.utils;
 
+import com.csvreader.CsvReader;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +52,32 @@ public class CsvUtils {
             System.out.println("csv表格中所有行数：" + allString.size());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return allString;
+    }
+
+    @SneakyThrows
+    public static List<List<String>> readCsv2(String filepath, boolean needHeader) {
+        // 第一参数：读取文件的路径 第二个参数：分隔符（不懂仔细查看引用百度百科的那段话） 第三个参数：字符集
+        CsvReader csvReader = new CsvReader(filepath, ',', Charset.forName(charsetName));
+        // 如果你的文件没有表头，这行不用执行
+        // 这行不要是为了从表头的下一行读，也就是过滤表头
+        if (!needHeader) {
+            csvReader.readHeaders();
+        }
+        // 读取每行的内容
+        ArrayList<List<String>> allString = new ArrayList<>();
+        while (csvReader.readRecord()) {
+            // 获取内容的两种方式
+            // 1. 通过下标获取
+            System.out.print(csvReader.get(0));
+            // 2. 通过表头的文字获取
+            System.out.println(" " + csvReader.get("年龄"));
+            List<String> cols = new ArrayList<>();
+            for (int i = 0; i <= 100; i++) {
+                cols.add(csvReader.get(i));
+            }
+            allString.add(cols);
         }
         return allString;
     }

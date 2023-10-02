@@ -2,7 +2,6 @@ package com.kkhome.excel.panel.center;
 
 import com.kkhome.excel.listener.ExecActionListener;
 import com.kkhome.excel.listener.ShangHaiDeliveryAddressHandler;
-import com.kkhome.excel.utils.ButtonUtils;
 import org.springframework.stereotype.Service;
 
 import javax.swing.*;
@@ -14,14 +13,13 @@ public class FhCenterJPanel extends JPanel {
     public FhCenterJPanel() {
         // 参考地址： https://blog.csdn.net/qq_36901092/article/details/130075998
         this.setLayout(new GridLayout(10, 3));
-        Object[] cols = {"序号", "功能清单"};
-        Object[][] rows = {{"1", "物流单号转换"}, {"2", "上海发货"}, {"3", "vitastudio发货单处理"},{"4", "上新表格生成，"}};
-        JTable jTable = new JTable(rows, cols);
-        jTable.setLayout(new GridLayout(15, 4));
-        this.add(jTable.getTableHeader());
-        this.add(jTable);
+//        Object[] cols = {"序号", "功能清单"};
+//        Object[][] rows = {{"1", "物流单号转换"}, {"2", "上海发货"}, {"3", "vitastudio发货单处理"},{"4", "上新表格生成，"}};
+//        JTable jTable = new JTable(rows, cols);
+//        jTable.setLayout(new GridLayout(15, 4));
+//        this.add(jTable.getTableHeader());
+//        this.add(jTable);
 
-        this.add(ButtonUtils.getEmpty());
         this.add(getButton("物流单号转换"));
 //        Vector<String> items = new Vector<>();
 //        items.add("默认不加海外仓地址");
@@ -33,10 +31,9 @@ public class FhCenterJPanel extends JPanel {
         javax.swing.JButton shfh = new javax.swing.JButton("上海发货");
         shfh.addActionListener(actionEvent -> new ShangHaiDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
         this.add(shfh);
-        this.add(ButtonUtils.getEmpty());
         this.add(getButton("vitastudio发货单处理"));
-        this.add(ButtonUtils.getEmpty());
         this.add(getButton("上新表格生成"));
+        this.add(getButton("sku合并"));
 
     }
 

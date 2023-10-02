@@ -1,5 +1,6 @@
 package com.kkhome.excel.listener;
 
+import com.kkhome.excel.listener.sx.ItemSkuMerge;
 import com.kkhome.excel.listener.sx.ItemUpLoad;
 
 import java.awt.event.ActionEvent;
@@ -27,6 +28,8 @@ public class ExecActionListener implements ActionListener {
                 break;
             case "上新表格生成":
                 ItemUpLoad.itemUpload();
+            case "sku合并":
+                new ItemSkuMerge().doHandler();
                 break;
         }
     }
