@@ -10,6 +10,10 @@ import java.io.*;
 @Slf4j
 public class PathUtils {
 
+    public static String getPathPrex() {
+        return "C:\\Users\\Administrator\\Desktop\\";
+    }
+
     public static String read() {
         File file = getFile();
         InputStream inputStream = null;

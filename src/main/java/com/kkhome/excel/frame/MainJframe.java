@@ -1,6 +1,10 @@
 package com.kkhome.excel.frame;
 
-import com.kkhome.excel.panel.*;
+import com.kkhome.excel.panel.FooterJPanel;
+import com.kkhome.excel.panel.HeaderJPanel;
+import com.kkhome.excel.panel.LeftJPanel;
+import com.kkhome.excel.panel.VersionJPanel;
+import com.kkhome.excel.panel.center.DownLoadImg1688JPanel;
 import com.kkhome.excel.panel.center.FhCenterJPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -51,12 +55,13 @@ public class MainJframe extends JFrame implements ApplicationRunner {
         //(除了JFrame)其它所有组件设置大小都是该方法
         //文件地址
 //        jf.add(FromJTextField.getJTextField());
+        Container container = getContentPane();
 
-        this.add(leftJPanel,BorderLayout.WEST);
-        this.add(versionJPanel, BorderLayout.SOUTH);
-        this.add(fhCenterJPanel, BorderLayout.CENTER);
+//        this.add(leftJPanel, BorderLayout.WEST);
+//        this.add(fhCenterJPanel, BorderLayout.CENTER);
+//        this.add(downLoadImg1688JPanel, BorderLayout.EAST);
+//        this.add(versionJPanel, BorderLayout.SOUTH);
 //        this.add(jPanelSouth, BorderLayout.SOUTH);
-        //设置可见，放在代码最后一句
         this.setVisible(true);
     }
 

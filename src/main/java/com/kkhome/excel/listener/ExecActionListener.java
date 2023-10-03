@@ -30,6 +30,8 @@ public class ExecActionListener implements ActionListener {
                 ItemUpLoad.itemUpload();
             case "sku合并":
                 new ItemSkuMerge().doHandler();
+            case "1688图片下载":
+                new ItemSkuMerge().doHandler();
                 break;
         }
     }
