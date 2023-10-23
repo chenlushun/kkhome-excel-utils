@@ -29,7 +29,11 @@ public class Find {
         i = 0;
         for (Element element : detailEles) {
             String sr = element.attr("data-lazyload-src");
-            downLoadFromUrl(sr, "详情" + i + ".jpg", downLoadPath + h);
+            try {
+                downLoadFromUrl(sr, "详情" + i + ".jpg", downLoadPath + h);
+            } catch (IOException e) {
+                System.out.println(sr);
+            }
             i++;
         }
 
@@ -89,7 +93,7 @@ public class Find {
         if (inputStream != null) {
             inputStream.close();
         }
-        System.out.println("info:" + url + " download success");
+      //  System.out.println("info:" + url + " download success");
     }
 
 
