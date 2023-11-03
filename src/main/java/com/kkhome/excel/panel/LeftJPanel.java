@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.swing.*;
 import java.awt.*;
 
-@Component
+//@Component
 public class LeftJPanel extends JPanel {
 
     @Autowired

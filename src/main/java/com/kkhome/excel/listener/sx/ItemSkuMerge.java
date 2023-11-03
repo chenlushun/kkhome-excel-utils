@@ -50,12 +50,25 @@ public class ItemSkuMerge extends AbstractExcelHandler implements ExcelHandler {
 
     public void readCsvToExcel(String from, String to) {
         List<List<String>> result = new ArrayList<>();
-        List<List<String>> list = CsvUtils.readCsv2(from, false);
-        for (List<String> strings : list) {
-            String colors = strings.get(94);
+        List<List<String>> list = CsvUtils.readCsv2(from, true);
+        List<String> subList = list.get(0);
+        int colorsIndex = 94;
+        int sizeIndex = 95;
+        for (int i = 0; i < subList.size(); i++) {
+            String title = subList.get(i);
+            if (title.equals("バリエーション1選択肢定義")) {
+                colorsIndex = i;
+            }
+            if (title.equals("バリエーション2選択肢定義")) {
+                sizeIndex = i;
+            }
+        }
+        for (int i = 1; i < list.size(); i++) {
+            List<String> strings = list.get(i);
+            String colors = strings.get(colorsIndex);
             String code = strings.get(0);
             for (String s : colors.split("\\|")) {
-                String sizes = strings.get(95);
+                String sizes = strings.get(sizeIndex);
                 for (String s1 : sizes.split("\\|")) {
                     List<String> sub = new ArrayList<>();
                     sub.add(code);
@@ -67,7 +80,6 @@ public class ItemSkuMerge extends AbstractExcelHandler implements ExcelHandler {
                 }
             }
         }
-
         ExcelUtils.writeExcel(result, to);
     }
 }

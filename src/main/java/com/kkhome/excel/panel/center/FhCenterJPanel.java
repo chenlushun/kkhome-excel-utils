@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.*;
 import java.awt.*;
 
-@Service
+//@Service
 public class FhCenterJPanel extends AbstractJPanel {
 
 //    @Autowired
