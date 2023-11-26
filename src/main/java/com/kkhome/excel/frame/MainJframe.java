@@ -4,7 +4,7 @@ import com.kkhome.excel.panel.FooterJPanel;
 import com.kkhome.excel.panel.HeaderJPanel;
 import com.kkhome.excel.panel.LeftJPanel;
 import com.kkhome.excel.panel.VersionJPanel;
-import com.kkhome.excel.panel.center.DownLoadImg1688JPanel;
+import com.kkhome.excel.panel.center.CenterJpanel;
 import com.kkhome.excel.panel.center.FhCenterJPanel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -24,15 +24,13 @@ public class MainJframe extends JFrame implements ApplicationRunner {
     private JButton loginButton, resetButton;
 
     @Autowired
-    private FhCenterJPanel fhCenterJPanel;
-    @Autowired
-    private LeftJPanel leftJPanel;
-    @Autowired
     private HeaderJPanel headerJPanel;
     @Autowired
     private FooterJPanel footerJPanel;
     @Autowired
     private VersionJPanel versionJPanel;
+    @Autowired
+    private CenterJpanel centerJpanel;
 
     public void showUI() {
         //窗体名称
@@ -47,9 +45,9 @@ public class MainJframe extends JFrame implements ApplicationRunner {
 //        this.setLayout(null);
 
         //流式布局管理器
-//        java.awt.FlowLayout flow = new java.awt.FlowLayout();
+        java.awt.BorderLayout flow = new java.awt.BorderLayout();
         //给窗体设置为流式布局——从左到右然后从上到下排列自己写的组件顺序
-//        this.setLayout(flow);
+        this.setLayout(flow);
 //        this.setLayout(new GridLayout(4, 2));
 //        this.add(new JLabel("3212"));
         //(除了JFrame)其它所有组件设置大小都是该方法
@@ -58,7 +56,7 @@ public class MainJframe extends JFrame implements ApplicationRunner {
         Container container = getContentPane();
 
 //        this.add(leftJPanel, BorderLayout.WEST);
-//        this.add(fhCenterJPanel, BorderLayout.CENTER);
+        this.add(centerJpanel.getJPanel(), BorderLayout.CENTER);
 //        this.add(downLoadImg1688JPanel, BorderLayout.EAST);
 //        this.add(versionJPanel, BorderLayout.SOUTH);
 //        this.add(jPanelSouth, BorderLayout.SOUTH);

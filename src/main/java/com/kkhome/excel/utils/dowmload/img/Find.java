@@ -1,5 +1,6 @@
 package com.kkhome.excel.utils.dowmload.img;
 
+import com.google.common.base.Joiner;
 import com.kkhome.excel.utils.PathUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -8,6 +9,7 @@ import org.jsoup.nodes.Element;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,7 +31,11 @@ public class Find {
         i = 0;
         for (Element element : detailEles) {
             String sr = element.attr("data-lazyload-src");
-            downLoadFromUrl(sr, "详情" + i + ".jpg", downLoadPath + h);
+            try {
+                downLoadFromUrl(sr, "详情" + i + ".jpg", downLoadPath + h);
+            } catch (IOException e) {
+                System.out.println(sr);
+            }
             i++;
         }
 
@@ -117,5 +123,33 @@ public class Find {
         }
         bos.close();
         return bos.toByteArray();
+    }
+
+
+    public static SkuEntity test2(String huohao, String path) throws IOException {
+        String h = huohao.split("\\.")[0];
+        Document doc = Jsoup.parse(new File(path), "utf-8");
+        List<Element> skuImgEles = doc.select(".prop-item-wrapper .prop-name");
+
+        List<String> cols = new ArrayList<>();
+        for (Element skuImgEle : skuImgEles) {
+            cols.add(skuImgEle.text());
+        }
+
+        List<Element> colEles = doc.select(".sku-item-name");
+
+        List<String> sizes = new ArrayList<>();
+        for (Element colEle : colEles) {
+            sizes.add(colEle.text().replace("*", "x"));
+        }
+
+
+        SkuEntity skuEntity = new SkuEntity();
+        skuEntity.setName(h);
+        skuEntity.setSize(Joiner.on("|").join(sizes));
+        skuEntity.setCol(Joiner.on("|").join(cols));
+
+
+        return skuEntity;
     }
 }

@@ -245,9 +245,9 @@ public class VitastudioFHExcelHandler extends AbstractExcelHandler implements Ex
     }
 
     public static String fileCopy(String path) {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //        String newF = "D:\\vitastudio" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + ".xls";
-        String newF = "C:\\Users\\Admin\\Desktop\\vita日本仓发货\\vitastudio" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + ".xls";
+        String newF = "C:\\Users\\Admin\\Desktop\\vita日本仓发货\\vita" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + ".xls";
         try (InputStream is = new FileInputStream(path);
              OutputStream os = new FileOutputStream(newF, true)) {  //注意OS的第二参数，是否追加。
             byte[] buffer = new byte[1024 * 1024];
