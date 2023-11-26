@@ -71,7 +71,15 @@ public class Find {
         conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 
         //得到输入流
-        InputStream inputStream = conn.getInputStream();
+        InputStream inputStream;
+        try {
+
+            inputStream = conn.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+
+        }
         //获取自己数组
         byte[] getData = readInputStream(inputStream);
 
@@ -89,7 +97,7 @@ public class Find {
         if (inputStream != null) {
             inputStream.close();
         }
-        System.out.println("info:" + url + " download success");
+        System.out.println(fileName + "info:" + url + " download success");
     }
 
 
