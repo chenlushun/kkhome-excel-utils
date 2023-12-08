@@ -28,6 +28,7 @@ public class ExecActionListener implements ActionListener {
                 break;
             case "上新表格生成":
                 ItemUpLoad.itemUpload();
+                break;
             case "sku合并":
                 new ItemSkuMerge().doHandler();
             case "1688图片下载":
