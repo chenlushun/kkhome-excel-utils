@@ -1,8 +1,7 @@
 package com.kkhome.excel.panel.center;
 
 import com.kkhome.excel.listener.ExecActionListener;
-import com.kkhome.excel.listener.ShangHaiDeliveryAddressHandler;
-import com.kkhome.excel.utils.ButtonUtils;
+import com.kkhome.excel.listener.YnDeliveryAddressHandler;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public class CenterJpanel {
         JPanel entcer = new JPanel();
         entcer.setLayout(new GridLayout(8, 2));
         entcer.add(getButton("物流单号转换"));
-        entcer.add(ButtonUtils.getEmpty());
+//        entcer.add(ButtonUtils.getEmpty());
 
 //        Vector<String> items = new Vector<>();
 //        items.add("默认不加海外仓地址");
@@ -24,9 +23,15 @@ public class CenterJpanel {
 
         JCheckBox checkBox1 = new JCheckBox("勾选添加海外仓地址");
         entcer.add(checkBox1);
-        javax.swing.JButton shfh = new javax.swing.JButton("上海发货");
-        shfh.addActionListener(actionEvent -> new ShangHaiDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
-        entcer.add(shfh);
+//        javax.swing.JButton shfh = new javax.swing.JButton("宋文勇发货");
+//        shfh.addActionListener(actionEvent -> new ShangHaiDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
+//        entcer.add(shfh);
+
+
+        javax.swing.JButton ynfh = new javax.swing.JButton("亚诺发货");
+        ynfh.addActionListener(actionEvent -> new YnDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
+        entcer.add(ynfh);
+
 //        entcer.add(ButtonUtils.getEmpty());
         entcer.add(getButton("vitastudio发货单处理"));
 
