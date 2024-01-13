@@ -12,6 +12,11 @@ public class SkuPriceMain {
 
     @SneakyThrows
     public static void main(String[] args) {
+        handler();
+    }
+
+    @SneakyThrows
+    public static void handler() {
         File file = new File(PathUtils.getPathPrex() + "1688");
         File[] files = file.listFiles();
         List<SkuPriceEntity> skuEntities = new ArrayList<>();

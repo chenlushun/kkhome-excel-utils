@@ -37,6 +37,7 @@ public class CenterJpanel {
 
         entcer.add(getButton("上新表格生成"));
         entcer.add(getButton("sku合并"));
+        entcer.add(getButton("1688价格读取"));
         return entcer;
     }
 

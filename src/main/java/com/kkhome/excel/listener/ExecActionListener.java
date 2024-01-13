@@ -2,6 +2,7 @@ package com.kkhome.excel.listener;
 
 import com.kkhome.excel.listener.sx.ItemSkuMerge;
 import com.kkhome.excel.listener.sx.ItemUpLoad;
+import com.kkhome.excel.utils.dowmload.img.SkuPriceMain;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,9 @@ public class ExecActionListener implements ActionListener {
                 break;
             case "上新表格生成":
                 ItemUpLoad.itemUpload();
+                break;
+            case "1688价格读取":
+                SkuPriceMain.handler();
                 break;
             case "sku合并":
                 new ItemSkuMerge().doHandler();
