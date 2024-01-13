@@ -152,4 +152,28 @@ public class Find {
 
         return skuEntity;
     }
+
+    public static List<SkuPriceEntity> test3(String huohao, String path) throws IOException {
+        String h = huohao.split("\\.")[0];
+        Document doc = Jsoup.parse(new File(path), "utf-8");
+        List<Element> skuEles = doc.select(".sku-item-wrapper .sku-item-left");
+
+        List<SkuPriceEntity> entities = new ArrayList<>();
+        for (Element skuEle : skuEles) {
+            SkuPriceEntity entity = new SkuPriceEntity();
+            entity.setSize(skuEle.select(".sku-item-name").text());
+
+            if (entity.getSize().contains("定制") || entity.getSize().contains("定做")) {
+                continue;
+            }
+
+            entity.setPrice(skuEle.select(".discountPrice-price").text());
+            entity.setCode(h);
+
+            entities.add(entity);
+        }
+
+
+        return entities;
+    }
 }

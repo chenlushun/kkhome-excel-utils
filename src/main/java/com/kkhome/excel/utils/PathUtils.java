@@ -11,7 +11,7 @@ import java.io.*;
 public class PathUtils {
 
     public static String getPathPrex() {
-        return "C:\\Users\\周梦丽\\Desktop\\";
+        return "C:\\Users\\Admin\\Desktop\\";
     }
 
     public static String read() {
