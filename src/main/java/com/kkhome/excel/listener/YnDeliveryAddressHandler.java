@@ -37,7 +37,7 @@ public class YnDeliveryAddressHandler extends AbstractExcelHandler implements Ex
             List<String> rowList = new ArrayList<>();
 
             // A   Type
-            rowList.add("");
+            rowList.add(rows[0]);
             // B  お届け先コード
             rowList.add("");
             // C  邮编
