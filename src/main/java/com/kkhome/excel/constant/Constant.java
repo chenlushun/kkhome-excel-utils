@@ -9,6 +9,16 @@ public class Constant {
      * 杭诺
      */
     public static final String HN_DELIVERY_EXCEL_ADDRESS = "D:\\template\\delivery20240107.xlsx";
+
+    /**
+     * 亚诺黑猫
+     */
+    public static final String YN_HM_EXCEL_ADDRESS = "D:\\template\\ynhm.xlsx";
+
+    /**
+     * 亚诺投函
+     */
+    public static final String YN_YNHMTH_EXCEL_ADDRESS = "D:\\template\\ynhmth.xlsx";
     //    public static final String SHANG_HAI_DELIVERY_EXCEL_ADDRESS_NEW = "C:\\Users\\Administrator\\Desktop\\";
     public static final String SHANG_HAI_DELIVERY_EXCEL_ADDRESS_NEW = "C:\\Users\\Admin\\Desktop\\发货表格\\";
 

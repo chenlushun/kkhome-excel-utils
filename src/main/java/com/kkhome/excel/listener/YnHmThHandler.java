@@ -16,16 +16,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.kkhome.excel.constant.Constant.HN_DELIVERY_EXCEL_ADDRESS;
 import static com.kkhome.excel.constant.Constant.SHANG_HAI_DELIVERY_EXCEL_ADDRESS_NEW;
+import static com.kkhome.excel.constant.Constant.YN_YNHMTH_EXCEL_ADDRESS;
 
-public class YnDeliveryAddressHandler extends AbstractExcelHandler implements ExcelHandler {
+public class YnHmThHandler extends AbstractExcelHandler implements ExcelHandler {
 
     private final static String name = "%tm%td-陈录顺";
 
     private boolean checkBoxSelected;
 
-    public YnDeliveryAddressHandler(boolean checkBoxSelected) {
+    public YnHmThHandler(boolean checkBoxSelected) {
         this.checkBoxSelected = checkBoxSelected;
     }
 
@@ -36,79 +36,97 @@ public class YnDeliveryAddressHandler extends AbstractExcelHandler implements Ex
             String[] rows = str.split(",");
             List<String> rowList = new ArrayList<>();
 
-            // A   Type
+            // A   orderNo
             rowList.add(rows[0]);
-            // B  お届け先コード
+            // B  客户名称
             rowList.add("");
-            // C  邮编
-            rowList.add(rows[14] + "-" + rows[15]);
-            // D  住址
-            rowList.add(rows[16] + rows[17] + rows[18]);
-            // E
+            // C  业务日期
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+            rowList.add( LocalDateTime.now(ZoneOffset.of("+8")).format(df));
+            // D  内部单号
             rowList.add("");
-            // F
+            // E  目的地
             rowList.add("");
-            // G  收件人姓名
-            rowList.add(rows[12] + rows[13]);
+            // F  重量
+            rowList.add("");
+            // G
+            rowList.add("");
             // H
             rowList.add("");
-            // I  收件人电话
-            rowList.add("" + rows[19] + "-" + rows[20] + "-" + rows[21]);
+            // I
+            rowList.add("");
             // J
             rowList.add("");
-            // K
-            rowList.add("960-0711");
-            // L
-            rowList.add("福島県伊達市梁川町粟野字前93-1");
-            // M
-            rowList.add("");
-            // N
-            rowList.add("vita");
+            // K  收件人
+            rowList.add(rows[12] + rows[13]);
+            // L  收件地址
+            rowList.add(rows[16] + rows[17] + rows[18]);
+            // M  收件电话
+            rowList.add("" + rows[19] + "-" + rows[20] + "-" + rows[21]);
+            // N  收件邮编
+            rowList.add(rows[14] + "-" + rows[15]);
             // O
             rowList.add("");
             // P
-            rowList.add("024-572-3218");
+            rowList.add("");
+            // Q
+            rowList.add("");
+            // R
+            rowList.add("");
+            // S
+            rowList.add("USD");
+            // T
+            rowList.add("CN");
             result.add(rowList);
         }
         if (checkBoxSelected) {
             List<String> rowList = new ArrayList<>();
 
 
-            // A   Type
+            // A   orderNo
             rowList.add("");
-            // B  お届け先コード
+            // B  客户名称
             rowList.add("");
-            // C  邮编
-            rowList.add("960-0711");
-            // D  联系住址
-            rowList.add("福島県伊達市梁川町粟野字前93-1");
-            // E
+            // C  业务日期
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+            rowList.add( LocalDateTime.now(ZoneOffset.of("+8")).format(df));
+            // D  内部单号
             rowList.add("");
-            // F
+            // E  目的地
             rowList.add("");
-            // G  收件人姓名
-            rowList.add("vita(品和株式会社)");
+            // F  重量
+            rowList.add("");
+            // G
+            rowList.add("");
             // H
             rowList.add("");
-            // I  收件人电话
-            rowList.add("024-572-3218");
+            // I
+            rowList.add("");
             // J
             rowList.add("");
-            // K
+            // K  收件人
+            rowList.add("vita(品和株式会社)");
+            // L  收件地址
+            rowList.add("rows[16] + rows[17] + rows[18]");
+            // M  收件电话
+            rowList.add("024-572-3218");
+            // N  收件邮编
             rowList.add("960-0711");
-            // L
-            rowList.add("福島県伊達市梁川町粟野字前93-1");
-            // M
-            rowList.add("");
-            // N
-            rowList.add("vita");
             // O
             rowList.add("");
             // P
-            rowList.add("024-572-3218");
+            rowList.add("");
+            // Q
+            rowList.add("");
+            // R
+            rowList.add("");
+            // S
+            rowList.add("USD");
+            // T
+            rowList.add("CN");
             result.add(rowList);
         }
-        inserSheetData(result, HN_DELIVERY_EXCEL_ADDRESS);
+        inserSheetData(result, YN_YNHMTH_EXCEL_ADDRESS);
     }
 
 
@@ -183,7 +201,7 @@ public class YnDeliveryAddressHandler extends AbstractExcelHandler implements Ex
 
     public static String fileCopy(String path) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd");
-        String newF = SHANG_HAI_DELIVERY_EXCEL_ADDRESS_NEW + "佐川小包" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + "-YN100127.xlsx";
+        String newF = SHANG_HAI_DELIVERY_EXCEL_ADDRESS_NEW + "投函" + LocalDateTime.now(ZoneOffset.of("+8")).format(df) + "-YN100127.xlsx";
 
         try (InputStream is = new FileInputStream(path); FileOutputStream os = new FileOutputStream(newF, true)) {  //注意OS的第二参数，是否追加。
             byte[] buffer = new byte[1024 * 1024];

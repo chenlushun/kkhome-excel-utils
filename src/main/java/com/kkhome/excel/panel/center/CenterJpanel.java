@@ -2,6 +2,8 @@ package com.kkhome.excel.panel.center;
 
 import com.kkhome.excel.listener.ExecActionListener;
 import com.kkhome.excel.listener.YnDeliveryAddressHandler;
+import com.kkhome.excel.listener.YnHmHandler;
+import com.kkhome.excel.listener.YnHmThHandler;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -12,7 +14,7 @@ public class CenterJpanel {
     public JPanel getJPanel() {
         // 参考地址： https://blog.csdn.net/qq_36901092/article/details/130075998
         JPanel entcer = new JPanel();
-        entcer.setLayout(new GridLayout(8, 2));
+        entcer.setLayout(new GridLayout(10, 2));
         entcer.add(getButton("物流单号转换"));
 //        entcer.add(ButtonUtils.getEmpty());
 
@@ -28,9 +30,18 @@ public class CenterJpanel {
 //        entcer.add(shfh);
 
 
-        javax.swing.JButton ynfh = new javax.swing.JButton("亚诺发货");
-        ynfh.addActionListener(actionEvent -> new YnDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
-        entcer.add(ynfh);
+        javax.swing.JButton ynzc = new javax.swing.JButton("亚诺-佐川小包");
+        ynzc.addActionListener(actionEvent -> new YnDeliveryAddressHandler(checkBox1.isSelected()).doHandler());
+        entcer.add(ynzc);
+
+
+        javax.swing.JButton ynhm = new javax.swing.JButton("亚诺-黑猫小包");
+        ynhm.addActionListener(actionEvent -> new YnHmHandler(checkBox1.isSelected()).doHandler());
+        entcer.add(ynhm);
+
+        javax.swing.JButton ynhmth = new javax.swing.JButton("亚诺-黑猫投函");
+        ynhmth.addActionListener(actionEvent -> new YnHmThHandler(checkBox1.isSelected()).doHandler());
+        entcer.add(ynhmth);
 
 //        entcer.add(ButtonUtils.getEmpty());
         entcer.add(getButton("vitastudio发货单处理"));
