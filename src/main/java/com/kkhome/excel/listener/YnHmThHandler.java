@@ -74,8 +74,10 @@ public class YnHmThHandler extends AbstractExcelHandler implements ExcelHandler 
             // R
             rowList.add("");
             // S
-            rowList.add("USD");
+            rowList.add("");
             // T
+            rowList.add("USD");
+            // U
             rowList.add("CN");
             result.add(rowList);
         }
